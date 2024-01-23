@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<!-- Detta specifierar att dokumentet är en HTML5-dokument. -->
+<html lang="sv">
+<!-- Rot-elementet för en HTML-sida. -->
+
+<head>
+    <meta charset="utf-8">
+    <!-- Innehåller metadata och länkar till stilmallar och skript. -->
+    <title>Responsiv Grid Layout (som anpassas efter skärmstorlek)</title>
+    <!-- Titeln på dokumentet som visas i webbläsarens titelfält. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basstil */
+        header,
+        nav,
+        main,
+        .photos,
+        footer {
+            border: 2px dotted black;
+            /* Lägger till en svart ram runt varje element */
+            padding: 10px;
+            /* Ger lite utrymme inuti varje element för estetik */
+            /* Gemensam bakgrundsfärg för dessa element och klassen 'photos'. */
+        }
+
+        .header-rubrik {
+            font-family: 'Roboto', sans-serif;
+            /* Använder Google Font */
+            font-size: 48pt;
+            /* Storlek på texten */
+            font-weight: 700;
+            /* Fet stil, anpassa efter ditt val av typsnittsvikt */
+            /* Du kan lägga till ytterligare stilegenskaper här om du vill */
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-family: 'Roboto', sans-serif;
+            /* Använder Google Font */
+            font-size: 10pt;
+            /* Storlek på texten */
+            font-weight: 700;
+            /* Fet stil, anpassa efter ditt val av typsnittsvikt */
+            /* Du kan lägga till ytterligare stilegenskaper här om du vill */
+        }
+
+        .container {
+            display: grid;
+            /* Använder CSS Grid Layout för att organisera innehållet. */
+            grid-template-areas:
+                /* Area för att det är smidigt */
+                "header"
+                "nav"
+                "main"
+                "photos"
+                "footer";
+            /* Definierar layoutområden med namn. */
+            grid-gap: 10px;
+            /* Sätter mellanrum mellan grid-elementen. */
+            width: 100%;
+            /* Använder hela skärmbredden för mobila enheter */
+            margin: 0 auto;
+            /* Centrerar containern på sidan */
+        }
+
+        header {
+            grid-area: header;
+            text-align: center;
+            /* Placerar header-elementet i 'header'-området i grid-layouten. */
+            text-align: center;
+            /* Centrerar texten horisontellt */
+            display: flex;
+            /* Använder flexbox för att justera innehållet */
+            align-items: center;
+            /* Centrerar innehållet vertikalt */
+            justify-content: center;
+            /* Centrerar innehållet horisontellt (fungerar tillsammans med text-align) */
+            height: 55px;
+            /* Sätt en höjd på headern */
+        }
+
+        nav {
+            grid-area: nav;
+            /* Placerar nav-elementet i 'nav'-området. */
+            text-align: center;
+        }
+
+        footer {
+            grid-area: footer;
+            /* Placerar nav-elementet i 'footer'-området. */
+        }
+
+        main {
+            grid-area: main;
+            /* Placerar main-elementet i 'main'-området. */
+        }
+
+        .photos {
+            grid-area: photos;
+            /* Placerar .photos-diven i 'photos'-området. */
+            display: flex;
+            /* Använder flexbox för att organisera bilder inuti .photos-diven. */
+            flex-wrap: wrap;
+            /* Tillåter att flex-items kan omslutas till nästa rad. */
+            justify-content: space-around;
+            /* Jämnt fördelar innehållet inom flex-containern. */
+            gap: 10px;
+
+        }
+
+        .photos img {
+            max-width: 100%;
+            /* Sätter maximal bredd på bilder till 100% för att undvika att de blir för stora. */
+
+            /* Sätter marginal runt varje bild. */
+        }
+
+        /* Media Query för större skärmar */
+        @media (min-width: 600px) {
+            .container {
+                grid-template-columns: 2fr 200px;
+                /* Två kolumner för skärmar större än 600px. */
+                grid-template-areas:
+                    "header header"
+                    "nav nav"
+                    "main photos"
+                    "footer footer";
+                /* Omorganiserar grid-områden för större skärmar. */
+                width: 1000px;
+                /* Bredd satt till 1000 pixlar */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        $(document).ready(function () {
+            $('body').hide().fadeIn(500); // 500 ms för toningseffekten
+        });
+    </script>
+    <!-- Huvuddelen av dokumentet som innehåller allt synligt innehåll. -->
+    <div class="container">
+        <!-- Container-div som använder grid-layout. -->
+        <header>
+            <h1 class="header-rubrik">Ett häftigt event</h1>
+        </header>
+        <!-- Header-element som är en del av grid-layouten. -->
+        <nav><a href="#">Länk 1</a> | <a href="#">Länk 2</a> | <a href="#">Länk 3</a></nav>
+        <!-- Navigationselement som är en del av grid-layouten. -->
+        <main>
+            <!-- Huvudinnehållselementet som är en del av grid-layouten. -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras faucibus metus quam, a mollis augue
+                hendrerit ac. Donec facilisis, lacus ut consectetur imperdiet, urna augue tincidunt dolor, nec varius
+                urna felis vel orci. Donec condimentum ex a augue placerat, mollis imperdiet ex ultrices. Maecenas sed
+                lobortis dolor. Phasellus auctor felis vel tortor interdum, eget vehicula ante convallis. Aliquam auctor
+                laoreet enim, elementum tristique sapien finibus pellentesque. Maecenas congue dolor id odio gravida, eu
+                pharetra lorem sollicitudin. Curabitur scelerisque magna vel nunc porta pharetra. Mauris et pellentesque
+                felis. Mauris pharetra commodo semper. Integer et vehicula justo. In hac habitasse platea dictumst.
+                Quisque malesuada et dui at volutpat.</p>
+
+            <p>Sed sodales urna et posuere viverra. Etiam suscipit, purus ut egestas porttitor, neque dui egestas mi,
+                sed volutpat dolor odio a urna. Aliquam magna mi, posuere non nulla eu, eleifend pharetra nunc. Donec
+                fermentum fermentum placerat. Phasellus sed facilisis ex. Proin dui leo, aliquet et iaculis eu, placerat
+                sit amet leo. Morbi vitae felis sit amet dui semper sollicitudin at a nisi. Phasellus facilisis est ac
+                arcu vulputate sodales. Duis at lectus vel elit blandit vestibulum.</p>
+
+            <p>Aenean bibendum tempor est eget rhoncus. Sed vel facilisis nulla, ut pretium erat. Integer dictum, nibh
+                vel finibus ornare, lacus dolor iaculis leo, sed euismod leo tellus vitae massa. Donec varius leo risus,
+                semper euismod risus pellentesque eget. Duis eu nulla sit amet purus fringilla vulputate in non nibh.
+                Donec elementum vulputate dui, nec porttitor purus blandit non. Curabitur bibendum tincidunt ipsum, sed
+                commodo dolor. Maecenas mattis eu metus non accumsan. Nulla elementum nibh turpis. Duis vehicula
+                efficitur urna, sed lobortis quam pharetra vitae.</p>
+
+            <p>Duis tincidunt tortor quis egestas viverra. Sed quam arcu, tincidunt nec quam sed, fermentum suscipit
+                massa. Nam eget suscipit ex, sit amet egestas risus. Class aptent taciti sociosqu ad litora torquent per
+                conubia nostra, per inceptos himenaeos. Integer hendrerit quis eros iaculis rhoncus. Nulla facilisi.
+                Vestibulum vehicula rhoncus felis, ut interdum sem volutpat a.</p>
+
+            <p>Integer id mauris placerat, porta magna a, dapibus nisi. Donec ex ligula, sollicitudin a nulla et,
+                fringilla convallis lorem. Morbi tempus elit sed augue dapibus imperdiet. Proin scelerisque sed sem a
+                aliquet. Donec elementum, neque vitae pharetra scelerisque, ligula neque laoreet ex, at eleifend lectus
+                enim ut dolor. Vivamus condimentum purus viverra tristique sagittis. Class aptent taciti sociosqu ad
+                litora torquent per conubia nostra, per inceptos himenaeos. Donec consequat quam rhoncus odio hendrerit,
+                sit amet vestibulum erat pretium. Mauris dignissim ante quis neque interdum ultrices. Curabitur ac nulla
+                est. Proin ac est risus. Donec lacus ipsum, iaculis vitae imperdiet at, laoreet aliquam elit. Curabitur
+                nisl diam, ullamcorper vitae imperdiet eget, tristique at ligula. Ut semper magna risus, in commodo
+                libero ullamcorper ut.</p>
+        </main>
+        <div class="photos">
+            <!-- En div för bilder som är en del av grid-layouten. -->
+            <!-- Dina bilder här -->
+            <img src="bild1.png" alt="">
+            <img src="bild2.png" alt="">
+            <img src="bild3.png" alt="">
+            <img src="bild4.png" alt="">
+            <!-- Lägg till fler bilder här vid behov -->
+        </div>
+        <footer>&copy; Patrick Schooner</footer>
+    </div>
+</body>
+
+</html>
